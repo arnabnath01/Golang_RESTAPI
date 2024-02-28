@@ -30,14 +30,21 @@ type Director struct {
 
 var movies []Movie
 
-func main(){
-	
 
-	movies= append(movies, Movie{Id: "1", Name: "The Shawshank Redemption", Title: "1994", Director:  &Director{Firstname: "Frank",Lastname: "Darabont"}})
+
+func dataEntry(){
+		movies= append(movies, Movie{Id: "1", Name: "The Shawshank Redemption", Title: "1994", Director:  &Director{Firstname: "Frank",Lastname: "Darabont"}})
 	movies = append(movies, Movie{Id: "2", Name: "The Godfather", Title: "1972", Director: &Director{Firstname: "Francis",Lastname: "Ford Coppola"}})
 	movies = append(movies, Movie{Id: "3", Name: "The Dark Knight", Title: "2008", Director: &Director{Firstname: "Christopher",Lastname: "Nolan"}})
 	movies = append(movies, Movie{Id: "4", Name: "The Godfather: Part II", Title: "1974", Director: &Director{Firstname: "Francis",Lastname: "Ford Coppola"}})
+}
+
+
+
+func main(){
 	
+	dataEntry()
+
 
 
 
@@ -63,6 +70,18 @@ func getmovies(w http.ResponseWriter, r *http.Request){
 	//𝘀𝗲𝗻𝗱𝗶𝗻𝗴 𝘁𝗵𝗲 𝗝𝗦𝗢𝗡 𝗿𝗲𝘀𝗽𝗼𝗻𝘀𝗲
 	json.NewEncoder(w).Encode(movies)
 }
+
+
+
+/*	 ​‌‍‌𝗺𝗲𝗮𝗻𝗶𝗻𝗴 𝗼𝗳 𝗽𝗮𝗿𝗮𝗺𝘀 := 𝗺𝘂𝘅.𝗩𝗮𝗿𝘀(𝗿)​
+
+For example, if you have a route defined as `/users/{id}`, and 
+a client sends a request to `/users/123`, `mux.Vars(r)` would return 
+a map with a key of `"id"` and a value of `"123"`.
+
+   */ 
+
+
 func getmovie(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
